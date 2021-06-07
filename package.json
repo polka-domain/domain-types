@@ -2,15 +2,15 @@
     "name": "domain-types",
     "version": "1.0.0",
     "scripts": {
-        "build": "yarn generate:defs && yarn generate:meta",
-        "generate:defs": "ts-node --skip-project node_modules/.bin/polkadot-types-from-defs --package domain-types/interfaces --input ./src/interfaces",
-        "generate:meta": "ts-node --skip-project node_modules/.bin/polkadot-types-from-chain --package domain-types/interfaces --endpoint ./domain.json --output ./src/interfaces",
-        "lint": "tsc --noEmit --pretty"
-      },
+      "build": "yarn generate:defs && yarn generate:meta",
+      "generate:defs": "ts-node --skip-project node_modules/.bin/polkadot-types-from-defs --package domain-types/interfaces --input ./src/interfaces",
+      "generate:meta": "ts-node --skip-project node_modules/.bin/polkadot-types-from-chain --package domain-types/interfaces --endpoint ./domain.json --output ./src/interfaces",
+      "lint": "tsc --noEmit --pretty"
+    },
     "devDependencies": {
-      "@polkadot/api": "4.12.1",
-      "@polkadot/typegen": "4.12.1",
-      "@polkadot/types": "4.12.1",
+      "@polkadot/api": "4.13.1",
+      "@polkadot/typegen": "4.13.1",
+      "@polkadot/types": "4.13.1",
       "@types/websocket": "^1.0.0",
       "ts-node": "^8.6.2",
       "typescript": "^4.0.5",
@@ -18,6 +18,17 @@
     },
     "dependencies": {
       "@open-web3/orml-type-definitions": "^0.9.3"
-    }
+    },
+    "main": "index.ts",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/todaylab/domain-types.git"
+    },
+    "author": "todaylab",
+    "license": "Apache-2",
+    "bugs": {
+      "url": "https://github.com/todaylab/domain-types/issues"
+    },
+    "homepage": "https://github.com/todaylab/domain-types#readme",
+    "description": ""
   }
-  
