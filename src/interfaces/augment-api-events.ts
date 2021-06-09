@@ -2,14 +2,16 @@
 /* eslint-disable */
 
 import type { Bytes, Option, U8aFixed, u16, u32 } from '@polkadot/types';
+import type { ITuple } from '@polkadot/types/types';
 import type { BalanceStatus } from '@polkadot/types/interfaces/balances';
 import type { MessageId, OverweightIndex } from '@polkadot/types/interfaces/cumulus';
 import type { ParaId, RelayChainBlockNumber } from '@polkadot/types/interfaces/parachains';
 import type { ProxyType } from '@polkadot/types/interfaces/proxy';
 import type { AccountId, Balance, BalanceOf, BlockNumber, Hash, Weight } from '@polkadot/types/interfaces/runtime';
 import type { DispatchError, DispatchInfo, DispatchResult } from '@polkadot/types/interfaces/system';
+import type { ClassId } from '@polkadot/types/interfaces/uniques';
 import type { MultiLocation, Outcome, Xcm, XcmError } from '@polkadot/types/interfaces/xcm';
-import type { AmountOf, AuctionId, ClassIdOf, CurrencyId, CurrencyIdOf, OrderId, TokenIdOf } from 'domain-types/interfaces/default';
+import type { AmountOf, AuctionId, ClassIdOf, CurrencyId, CurrencyIdOf, OrderId, TokenId, TokenIdOf } from 'domain-types/interfaces/default';
 import type { ApiTypes } from '@polkadot/api/types';
 
 declare module '@polkadot/api/types/events' {
@@ -17,8 +19,8 @@ declare module '@polkadot/api/types/events' {
     auction: {
       AuctionBid: AugmentedEvent<ApiType, [AuctionId, AccountId, Balance]>;
       AuctionCancelled: AugmentedEvent<ApiType, [AuctionId]>;
-      AuctionCreated: AugmentedEvent<ApiType, [AuctionId, AccountId]>;
-      AuctionEnd: AugmentedEvent<ApiType, [AuctionId]>;
+      AuctionCreated: AugmentedEvent<ApiType, [AuctionId, AccountId, ITuple<[ClassId, TokenId]>, CurrencyId, Balance, BlockNumber, BlockNumber, BlockNumber]>;
+      AuctionEnd: AugmentedEvent<ApiType, [AuctionId, Option<AccountId>, Option<Balance>]>;
       /**
        * Generic event
        **/
@@ -146,7 +148,7 @@ declare module '@polkadot/api/types/events' {
     };
     domainRegistrar: {
       DomainDeregistered: AugmentedEvent<ApiType, [AccountId, Bytes]>;
-      DomainRegistered: AugmentedEvent<ApiType, [AccountId, Bytes]>;
+      DomainRegistered: AugmentedEvent<ApiType, [AccountId, Bytes, Bytes, Balance]>;
       Sent: AugmentedEvent<ApiType, [AccountId, Bytes]>;
       /**
        * Generic event
@@ -185,8 +187,8 @@ declare module '@polkadot/api/types/events' {
     };
     order: {
       OrderCancelled: AugmentedEvent<ApiType, [OrderId]>;
-      OrderCreated: AugmentedEvent<ApiType, [OrderId, AccountId]>;
-      OrderSwapped: AugmentedEvent<ApiType, [OrderId, AccountId]>;
+      OrderCreated: AugmentedEvent<ApiType, [OrderId, AccountId, ITuple<[ClassId, TokenId]>, CurrencyId, Balance]>;
+      OrderSwapped: AugmentedEvent<ApiType, [OrderId, AccountId, Balance]>;
       /**
        * Generic event
        **/
