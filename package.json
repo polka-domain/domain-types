@@ -22,13 +22,13 @@
   "main": "index.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/todaylab/domain-types.git"
+    "url": "git+https://github.com/aoemaster/domain-types.git"
   },
-  "author": "todaylab",
+  "author": "aoemaster",
   "license": "Apache-2",
   "bugs": {
-    "url": "https://github.com/todaylab/domain-types/issues"
+    "url": "https://github.com/aoemaster/domain-types/issues"
   },
-  "homepage": "https://github.com/todaylab/domain-types#readme",
+  "homepage": "https://github.com/aoemaster/domain-types#readme",
   "description": ""
 }
