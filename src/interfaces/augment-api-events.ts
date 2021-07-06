@@ -11,7 +11,7 @@ import type { AccountId, Balance, BalanceOf, BlockNumber, Hash, Weight } from '@
 import type { DispatchError, DispatchInfo, DispatchResult } from '@polkadot/types/interfaces/system';
 import type { ClassId } from '@polkadot/types/interfaces/uniques';
 import type { MultiLocation, Outcome, Xcm, XcmError } from '@polkadot/types/interfaces/xcm';
-import type { AmountOf, AuctionId, ClassIdOf, CurrencyId, CurrencyIdOf, OrderId, TokenId, TokenIdOf } from 'domain-types/interfaces/default';
+import type { AddressChainType, AmountOf, AuctionId, ClassIdOf, CurrencyId, CurrencyIdOf, OrderId, TokenId, TokenIdOf } from 'domain-types/interfaces/default';
 import type { ApiTypes } from '@polkadot/api/types';
 
 declare module '@polkadot/api/types/events' {
@@ -147,9 +147,11 @@ declare module '@polkadot/api/types/events' {
       [key: string]: AugmentedEvent<ApiType>;
     };
     domainRegistrar: {
-      DomainDeregistered: AugmentedEvent<ApiType, [AccountId, Bytes]>;
-      DomainRegistered: AugmentedEvent<ApiType, [AccountId, Bytes, Bytes, Balance]>;
+      BindAddress: AugmentedEvent<ApiType, [AccountId, Bytes, AddressChainType, Bytes]>;
+      DomainDeregistered: AugmentedEvent<ApiType, [AccountId, Bytes, ITuple<[ClassId, TokenId]>]>;
+      DomainRegistered: AugmentedEvent<ApiType, [AccountId, Bytes, Bytes, Balance, ITuple<[ClassId, TokenId]>]>;
       Sent: AugmentedEvent<ApiType, [AccountId, Bytes]>;
+      Transfer: AugmentedEvent<ApiType, [AccountId, AccountId, Bytes, ITuple<[ClassId, TokenId]>]>;
       /**
        * Generic event
        **/
@@ -314,14 +316,29 @@ declare module '@polkadot/api/types/events' {
     tokens: {
       /**
        * An account was removed whose balance was non-zero but below
-       * ExistentialDeposit, resulting in an outright loss. \[account,
-       * currency_id, amount\]
+       * ExistentialDeposit, resulting in an outright loss. \[currency_id,
+       * account, balance\]
        **/
-      DustLost: AugmentedEvent<ApiType, [AccountId, CurrencyId, Balance]>;
+      DustLost: AugmentedEvent<ApiType, [CurrencyId, AccountId, Balance]>;
       /**
-       * Token transfer success. \[currency_id, from, to, amount\]
+       * An account was created with some free balance. \[currency_id,
+       * account, free_balance\]
        **/
-      Transferred: AugmentedEvent<ApiType, [CurrencyId, AccountId, AccountId, Balance]>;
+      Endowed: AugmentedEvent<ApiType, [CurrencyId, AccountId, Balance]>;
+      /**
+       * Some balance was reserved (moved from free to reserved).
+       * \[currency_id, who, value\]
+       **/
+      Reserved: AugmentedEvent<ApiType, [CurrencyId, AccountId, Balance]>;
+      /**
+       * Transfer succeeded. \[currency_id, from, to, value\]
+       **/
+      Transfer: AugmentedEvent<ApiType, [CurrencyId, AccountId, AccountId, Balance]>;
+      /**
+       * Some balance was unreserved (moved from reserved to free).
+       * \[currency_id, who, value\]
+       **/
+      Unreserved: AugmentedEvent<ApiType, [CurrencyId, AccountId, Balance]>;
       /**
        * Generic event
        **/

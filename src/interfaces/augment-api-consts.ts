@@ -1,13 +1,13 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-import type { Vec, u16, u32, u8 } from '@polkadot/types';
+import type { Vec, u16, u32 } from '@polkadot/types';
 import type { Codec } from '@polkadot/types/types';
 import type { Balance, BalanceOf, BlockNumber, Moment, PalletId, RuntimeDbWeight } from '@polkadot/types/interfaces/runtime';
 import type { RuntimeVersion } from '@polkadot/types/interfaces/state';
 import type { WeightToFeeCoefficient } from '@polkadot/types/interfaces/support';
 import type { BlockLength, BlockWeights } from '@polkadot/types/interfaces/system';
-import type { CurrencyIdOf } from 'domain-types/interfaces/default';
+import type { ClassIdOf, CurrencyIdOf } from 'domain-types/interfaces/default';
 import type { ApiTypes } from '@polkadot/api/types';
 
 declare module '@polkadot/api/types/consts' {
@@ -38,6 +38,10 @@ declare module '@polkadot/api/types/consts' {
        * The deposit to be paid to register a domain.
        **/
       maxDomainLen: u32 & AugmentedConst<ApiType>;
+      /**
+       * The deposit to be paid to register a domain.
+       **/
+      nftClassId: ClassIdOf & AugmentedConst<ApiType>;
       /**
        * Generic const
        **/
@@ -82,7 +86,7 @@ declare module '@polkadot/api/types/consts' {
       /**
        * The maximum amount of proxies allowed for a single account.
        **/
-      maxProxies: u16 & AugmentedConst<ApiType>;
+      maxProxies: u32 & AugmentedConst<ApiType>;
       /**
        * The base amount of currency needed to reserve for creating a proxy.
        * 
@@ -127,7 +131,7 @@ declare module '@polkadot/api/types/consts' {
        * that the runtime should know about the prefix in order to make use of it as
        * an identifier of the chain.
        **/
-      ss58Prefix: u8 & AugmentedConst<ApiType>;
+      ss58Prefix: u16 & AugmentedConst<ApiType>;
       /**
        * Get the chain's current version.
        **/
