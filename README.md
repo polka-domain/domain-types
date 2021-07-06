@@ -1,17 +1,18 @@
-# 零 安装依赖
+# 0 Installation dependencies
 
 yarn install
 
-# 一 更新 types.json
+# 一 update types.json
 
 src/interfaces/definitions.ts
 
-替换 types 节点的数据
+replace the types node
 
-# 二 更新 Metadata
+# 二 update Metadata
 
+npm install -g ts-node
 ts-node ./scripts/updateMetadata.ts
 
-# 三 重新生成代码
+# 三 codegen
 
 yarn build

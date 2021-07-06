@@ -22,13 +22,13 @@
   "main": "index.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aoemaster/domain-types.git"
+    "url": "git+https://github.com/polka-domain/domain-types.git"
   },
-  "author": "aoemaster",
+  "author": "polka-domain",
   "license": "Apache-2",
   "bugs": {
-    "url": "https://github.com/aoemaster/domain-types/issues"
+    "url": "https://github.com/polka-domain/domain-types/issues"
   },
-  "homepage": "https://github.com/aoemaster/domain-types#readme",
+  "homepage": "https://github.com/polka-domain/domain-types#readme",
   "description": ""
 }
