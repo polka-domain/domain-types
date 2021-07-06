@@ -1,7 +1,7 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-import type { Bytes, Compact, Option, Vec, u16, u32, u64 } from '@polkadot/types';
+import type { Bytes, Compact, Option, Vec, bool, u16, u32, u64 } from '@polkadot/types';
 import type { AnyNumber, ITuple } from '@polkadot/types/types';
 import type { OverweightIndex } from '@polkadot/types/interfaces/cumulus';
 import type { Extrinsic } from '@polkadot/types/interfaces/extrinsics';
@@ -11,7 +11,7 @@ import type { AccountId, Balance, BalanceOf, BlockNumber, Call, CallHashOf, Chan
 import type { Key } from '@polkadot/types/interfaces/system';
 import type { ClassId } from '@polkadot/types/interfaces/uniques';
 import type { MultiAsset, MultiLocation, Xcm } from '@polkadot/types/interfaces/xcm';
-import type { AmountOf, AuctionId, CID, ClassIdOf, CurrencyId, CurrencyIdOf, OrderId, Properties, TokenId, TokenIdOf } from 'domain-types/interfaces/default';
+import type { AddressChainType, AmountOf, AuctionId, CID, ClassIdOf, CurrencyId, CurrencyIdOf, OrderId, Properties, TokenId, TokenIdOf } from 'domain-types/interfaces/default';
 import type { ApiTypes, SubmittableExtrinsic } from '@polkadot/api/types';
 
 declare module '@polkadot/api/types/submittable' {
@@ -87,6 +87,27 @@ declare module '@polkadot/api/types/submittable' {
        **/
       transfer: AugmentedSubmittable<(dest: LookupSource | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, value: Compact<Balance> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [LookupSource, Compact<Balance>]>;
       /**
+       * Transfer the entire transferable balance from the caller account.
+       * 
+       * NOTE: This function only attempts to transfer _transferable_ balances. This means that
+       * any locked, reserved, or existential deposits (when `keep_alive` is `true`), will not be
+       * transferred by this function. To ensure that this function results in a killed account,
+       * you might need to prepare the account by removing any reference counters, storage
+       * deposits, etc...
+       * 
+       * The dispatch origin of this call must be Signed.
+       * 
+       * - `dest`: The recipient of the transfer.
+       * - `keep_alive`: A boolean to determine if the `transfer_all` operation should send all
+       * of the funds the account has, causing the sender account to be killed (false), or
+       * transfer everything except at least the existential deposit, which will guarantee to
+       * keep the sender account alive (true).
+       * # <weight>
+       * - O(1). Just like transfer, but reading the user's transferable balance first.
+       * #</weight>
+       **/
+      transferAll: AugmentedSubmittable<(dest: LookupSource | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, keepAlive: bool | boolean | Uint8Array) => SubmittableExtrinsic<ApiType>, [LookupSource, bool]>;
+      /**
        * Same as the [`transfer`] call, but with a check that the transfer will not kill the
        * origin account.
        * 
@@ -153,9 +174,11 @@ declare module '@polkadot/api/types/submittable' {
       [key: string]: SubmittableExtrinsicFunction<ApiType>;
     };
     domainRegistrar: {
+      bindAddress: AugmentedSubmittable<(domain: Bytes | string | Uint8Array, chainType: AddressChainType | 'BTC' | 'ETH' | 'DOT' | 'KSM' | number | Uint8Array, address: Bytes | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Bytes, AddressChainType, Bytes]>;
       deregister: AugmentedSubmittable<(domain: Bytes | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Bytes]>;
       register: AugmentedSubmittable<(domain: Bytes | string | Uint8Array, ethereum: Bytes | string | Uint8Array, relay: Option<AccountId> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Bytes, Bytes, Option<AccountId>]>;
       send: AugmentedSubmittable<(target: AccountId | string | Uint8Array, targetDomain: Bytes | string | Uint8Array, call: Call | { callIndex?: any; args?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [AccountId, Bytes, Call]>;
+      transfer: AugmentedSubmittable<(to: AccountId | string | Uint8Array, domain: Bytes | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [AccountId, Bytes]>;
       /**
        * Generic tx
        **/

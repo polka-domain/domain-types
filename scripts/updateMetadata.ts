@@ -11,7 +11,7 @@ const main = (): void => {
     ws.send('{"id":"1","jsonrpc":"2.0","method":"state_getMetadata","params":[]}');
   };
   ws.onmessage = (msg: any): void => {
-    fs.writeFileSync("../domain.json", msg.data);
+    fs.writeFileSync("./domain.json", msg.data);
     console.log("Done");
     process.exit(0);
   };

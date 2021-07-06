@@ -43,6 +43,10 @@ declare module '@polkadot/api/types/errors' {
        **/
       LiquidityRestrictions: AugmentedError<ApiType>;
       /**
+       * Number of named reserves exceed MaxReserves
+       **/
+      TooManyReserves: AugmentedError<ApiType>;
+      /**
        * Vesting balance too high to send value
        **/
       VestingBalance: AugmentedError<ApiType>;
@@ -80,8 +84,10 @@ declare module '@polkadot/api/types/errors' {
       [key: string]: AugmentedError<ApiType>;
     };
     domainRegistrar: {
+      DomainMustExist: AugmentedError<ApiType>;
       InvalidDomainLength: AugmentedError<ApiType>;
       InvalidTarget: AugmentedError<ApiType>;
+      UnSupportChainType: AugmentedError<ApiType>;
       /**
        * Generic error
        **/
@@ -306,6 +312,14 @@ declare module '@polkadot/api/types/errors' {
        * The balance is too low
        **/
       BalanceTooLow: AugmentedError<ApiType>;
+      /**
+       * Value too low to create account due to existential deposit
+       **/
+      ExistentialDeposit: AugmentedError<ApiType>;
+      /**
+       * Transfer/payment would kill account
+       **/
+      KeepAlive: AugmentedError<ApiType>;
       /**
        * Failed because liquidity restrictions due to locking
        **/

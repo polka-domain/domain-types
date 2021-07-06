@@ -1,10 +1,17 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Bytes, Compact, Enum, Option, Set, Struct, i128, u32, u64 } from '@polkadot/types';
+import type { Bytes, Compact, Enum, Option, Set, Struct, i128, u128, u32, u64 } from '@polkadot/types';
 import type { ITuple } from '@polkadot/types/types';
-import type { AccountId, Balance, BlockNumber } from '@polkadot/types/interfaces/runtime';
-import type { ClassId } from '@polkadot/types/interfaces/uniques';
+import type { AccountId, BlockNumber } from '@polkadot/types/interfaces/runtime';
+
+/** @name AddressChainType */
+export interface AddressChainType extends Enum {
+  readonly isBtc: boolean;
+  readonly isEth: boolean;
+  readonly isDot: boolean;
+  readonly isKsm: boolean;
+}
 
 /** @name Amount */
 export interface Amount extends i128 {}
@@ -26,6 +33,9 @@ export interface AuctionDetails extends Struct {
 /** @name AuctionId */
 export interface AuctionId extends u32 {}
 
+/** @name Balance */
+export interface Balance extends u128 {}
+
 /** @name CID */
 export interface CID extends Bytes {}
 
@@ -34,6 +44,9 @@ export interface ClassData extends Struct {
   readonly deposit: Balance;
   readonly properties: Properties;
 }
+
+/** @name ClassId */
+export interface ClassId extends u32 {}
 
 /** @name ClassIdOf */
 export interface ClassIdOf extends ClassId {}
@@ -60,9 +73,12 @@ export interface CurrencyIdOf extends CurrencyId {}
 /** @name DomainInfo */
 export interface DomainInfo extends Struct {
   readonly native: AccountId;
-  readonly relay: Option<AccountId>;
-  readonly ethereum: Bytes;
+  readonly bitcoin: Option<Bytes>;
+  readonly ethereum: Option<Bytes>;
+  readonly polkadot: Option<AccountId>;
+  readonly kusama: Option<AccountId>;
   readonly deposit: Balance;
+  readonly nft_token: ITuple<[ClassId, TokenId]>;
 }
 
 /** @name Order */
