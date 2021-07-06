@@ -2,17 +2,17 @@
 
 yarn install
 
-# 一 update types.json
+# 1 update types.json
 
 src/interfaces/definitions.ts
 
 replace the types node
 
-# 二 update Metadata
+# 2 update Metadata
 
 npm install -g ts-node
 ts-node ./scripts/updateMetadata.ts
 
-# 三 codegen
+# 3 codegen
 
 yarn build
