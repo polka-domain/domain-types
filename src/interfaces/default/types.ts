@@ -3,7 +3,7 @@
 
 import type { Bytes, Compact, Enum, Option, Set, Struct, i128, u128, u32, u64 } from '@polkadot/types';
 import type { ITuple } from '@polkadot/types/types';
-import type { AccountId, BlockNumber } from '@polkadot/types/interfaces/runtime';
+import type { AccountId, BlockNumber, MultiAddress } from '@polkadot/types/interfaces/runtime';
 
 /** @name AddressChainType */
 export interface AddressChainType extends Enum {
@@ -73,10 +73,10 @@ export interface CurrencyIdOf extends CurrencyId {}
 /** @name DomainInfo */
 export interface DomainInfo extends Struct {
   readonly native: AccountId;
-  readonly bitcoin: Option<Bytes>;
-  readonly ethereum: Option<Bytes>;
-  readonly polkadot: Option<AccountId>;
-  readonly kusama: Option<AccountId>;
+  readonly bitcoin: Option<MultiAddress>;
+  readonly ethereum: Option<MultiAddress>;
+  readonly polkadot: Option<MultiAddress>;
+  readonly kusama: Option<MultiAddress>;
   readonly deposit: Balance;
   readonly nft_token: ITuple<[ClassId, TokenId]>;
 }

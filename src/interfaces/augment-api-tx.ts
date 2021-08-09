@@ -7,11 +7,11 @@ import type { OverweightIndex } from '@polkadot/types/interfaces/cumulus';
 import type { Extrinsic } from '@polkadot/types/interfaces/extrinsics';
 import type { ParaId, ParachainInherentData, RelayChainBlockNumber, UpwardMessage } from '@polkadot/types/interfaces/parachains';
 import type { ProxyType } from '@polkadot/types/interfaces/proxy';
-import type { AccountId, Balance, BalanceOf, BlockNumber, Call, CallHashOf, ChangesTrieConfiguration, Hash, KeyValue, LookupSource, Moment, Perbill, Weight } from '@polkadot/types/interfaces/runtime';
+import type { AccountId, Balance, BalanceOf, BlockNumber, Call, CallHashOf, ChangesTrieConfiguration, Hash, KeyValue, LookupSource, Moment, MultiAddress, Perbill, Weight } from '@polkadot/types/interfaces/runtime';
 import type { Key } from '@polkadot/types/interfaces/system';
 import type { ClassId } from '@polkadot/types/interfaces/uniques';
 import type { MultiAsset, MultiLocation, Xcm } from '@polkadot/types/interfaces/xcm';
-import type { AddressChainType, AmountOf, AuctionId, CID, ClassIdOf, CurrencyId, CurrencyIdOf, OrderId, Properties, TokenId, TokenIdOf } from 'domain-types/interfaces/default';
+import type { AmountOf, AuctionId, CID, ClassIdOf, CurrencyId, CurrencyIdOf, OrderId, Properties, TokenId, TokenIdOf } from 'domain-types/interfaces/default';
 import type { ApiTypes, SubmittableExtrinsic } from '@polkadot/api/types';
 
 declare module '@polkadot/api/types/submittable' {
@@ -174,9 +174,9 @@ declare module '@polkadot/api/types/submittable' {
       [key: string]: SubmittableExtrinsicFunction<ApiType>;
     };
     domainRegistrar: {
-      bindAddress: AugmentedSubmittable<(domain: Bytes | string | Uint8Array, chainType: AddressChainType | 'BTC' | 'ETH' | 'DOT' | 'KSM' | number | Uint8Array, address: Bytes | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Bytes, AddressChainType, Bytes]>;
+      bindAddress: AugmentedSubmittable<(domain: Bytes | string | Uint8Array, bitcoin: Option<MultiAddress> | null | object | string | Uint8Array, ethereum: Option<MultiAddress> | null | object | string | Uint8Array, polkadot: Option<MultiAddress> | null | object | string | Uint8Array, kusama: Option<MultiAddress> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Bytes, Option<MultiAddress>, Option<MultiAddress>, Option<MultiAddress>, Option<MultiAddress>]>;
       deregister: AugmentedSubmittable<(domain: Bytes | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Bytes]>;
-      register: AugmentedSubmittable<(domain: Bytes | string | Uint8Array, ethereum: Bytes | string | Uint8Array, relay: Option<AccountId> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Bytes, Bytes, Option<AccountId>]>;
+      register: AugmentedSubmittable<(domain: Bytes | string | Uint8Array, bitcoin: Option<MultiAddress> | null | object | string | Uint8Array, ethereum: Option<MultiAddress> | null | object | string | Uint8Array, polkadot: Option<MultiAddress> | null | object | string | Uint8Array, kusama: Option<MultiAddress> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Bytes, Option<MultiAddress>, Option<MultiAddress>, Option<MultiAddress>, Option<MultiAddress>]>;
       send: AugmentedSubmittable<(target: AccountId | string | Uint8Array, targetDomain: Bytes | string | Uint8Array, call: Call | { callIndex?: any; args?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [AccountId, Bytes, Call]>;
       transfer: AugmentedSubmittable<(to: AccountId | string | Uint8Array, domain: Bytes | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [AccountId, Bytes]>;
       /**

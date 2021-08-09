@@ -1,11 +1,12 @@
 {
   "name": "domain-types",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "scripts": {
     "build": "yarn generate:defs && yarn generate:meta",
     "generate:defs": "ts-node --skip-project node_modules/.bin/polkadot-types-from-defs --package domain-types/interfaces --input ./src/interfaces",
     "generate:meta": "ts-node --skip-project node_modules/.bin/polkadot-types-from-chain --package domain-types/interfaces --endpoint ./domain.json --output ./src/interfaces",
-    "lint": "tsc --noEmit --pretty"
+    "lint": "tsc --noEmit --pretty",
+    "updateMetadata": "ts-node ./scripts/updateMetadata.ts"
   },
   "devDependencies": {
     "@polkadot/api": "4.13.1",

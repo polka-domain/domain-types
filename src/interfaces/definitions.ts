@@ -53,10 +53,10 @@ export default {
         },
         "DomainInfo": {
             "native": "AccountId",
-            "bitcoin": "Option<Vec<u8>>",
-            "ethereum": "Option<Vec<u8>>",
-            "polkadot": "Option<AccountId>",
-            "kusama": "Option<AccountId>",
+            "bitcoin": "Option<MultiAddress>",
+            "ethereum": "Option<MultiAddress>",
+            "polkadot": "Option<MultiAddress>",
+            "kusama": "Option<MultiAddress>",
             "deposit": "Balance",
             "nft_token": "(ClassId, TokenId)"
         },
