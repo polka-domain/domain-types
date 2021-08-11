@@ -7,11 +7,11 @@ import type { BalanceStatus } from '@polkadot/types/interfaces/balances';
 import type { MessageId, OverweightIndex } from '@polkadot/types/interfaces/cumulus';
 import type { ParaId, RelayChainBlockNumber } from '@polkadot/types/interfaces/parachains';
 import type { ProxyType } from '@polkadot/types/interfaces/proxy';
-import type { AccountId, Balance, BalanceOf, BlockNumber, Hash, Weight } from '@polkadot/types/interfaces/runtime';
+import type { AccountId, Balance, BalanceOf, BlockNumber, Hash, MultiAddress, Weight } from '@polkadot/types/interfaces/runtime';
 import type { DispatchError, DispatchInfo, DispatchResult } from '@polkadot/types/interfaces/system';
 import type { ClassId } from '@polkadot/types/interfaces/uniques';
 import type { MultiLocation, Outcome, Xcm, XcmError } from '@polkadot/types/interfaces/xcm';
-import type { AddressChainType, AmountOf, AuctionId, ClassIdOf, CurrencyId, CurrencyIdOf, OrderId, TokenId, TokenIdOf } from 'domain-types/interfaces/default';
+import type { AmountOf, AuctionId, ClassIdOf, CurrencyId, CurrencyIdOf, OrderId, TokenId, TokenIdOf } from 'domain-types/interfaces/default';
 import type { ApiTypes } from '@polkadot/api/types';
 
 declare module '@polkadot/api/types/events' {
@@ -147,9 +147,9 @@ declare module '@polkadot/api/types/events' {
       [key: string]: AugmentedEvent<ApiType>;
     };
     domainRegistrar: {
-      BindAddress: AugmentedEvent<ApiType, [AccountId, Bytes, AddressChainType, Bytes]>;
+      BindAddress: AugmentedEvent<ApiType, [AccountId, Bytes, Option<MultiAddress>, Option<MultiAddress>, Option<MultiAddress>, Option<MultiAddress>]>;
       DomainDeregistered: AugmentedEvent<ApiType, [AccountId, Bytes, ITuple<[ClassId, TokenId]>]>;
-      DomainRegistered: AugmentedEvent<ApiType, [AccountId, Bytes, Bytes, Balance, ITuple<[ClassId, TokenId]>]>;
+      DomainRegistered: AugmentedEvent<ApiType, [AccountId, Bytes, Option<MultiAddress>, Option<MultiAddress>, Option<MultiAddress>, Option<MultiAddress>, Balance, ITuple<[ClassId, TokenId]>]>;
       Sent: AugmentedEvent<ApiType, [AccountId, Bytes]>;
       Transfer: AugmentedEvent<ApiType, [AccountId, AccountId, Bytes, ITuple<[ClassId, TokenId]>]>;
       /**

@@ -84,10 +84,10 @@ declare module '@polkadot/api/types/errors' {
       [key: string]: AugmentedError<ApiType>;
     };
     domainRegistrar: {
-      DomainMustExist: AugmentedError<ApiType>;
+      DomainMustNoRegister: AugmentedError<ApiType>;
+      InvalidAddressContent: AugmentedError<ApiType>;
       InvalidDomainLength: AugmentedError<ApiType>;
       InvalidTarget: AugmentedError<ApiType>;
-      UnSupportChainType: AugmentedError<ApiType>;
       /**
        * Generic error
        **/
